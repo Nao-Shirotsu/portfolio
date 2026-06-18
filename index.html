@@ -21,186 +21,273 @@
   </header>
 
   <main>
-    <ul class="gallery" role="list">
 
-      <!-- ============================================================
-           動画作品テンプレート（コピペで複製）
-           - works/NNN-slug/ に video.mp4 / poster.jpg を置く
-           - video.webm は任意（あれば<source>先頭で優先配信）
-           - aria-label / figcaption の作品タイトルは揃える
-           ============================================================ -->
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/001-loop-aurora/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="オーロラの呼吸">
-            <source src="works/001-loop-aurora/video.webm" type="video/webm">
-            <source src="works/001-loop-aurora/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">オーロラの呼吸</figcaption>
-        </figure>
-      </li>
+    <!-- ================================================================
+         カテゴリ = <section class="category">。見出しは <h2 class="category__label">。
+         その中の <ul class="gallery"> に、作品の塊 <li><figure class="work"> を並べる。
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/002-loop-bloom/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="開花のループ">
-            <source src="works/002-loop-bloom/video.webm" type="video/webm">
-            <source src="works/002-loop-bloom/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">開花のループ</figcaption>
-        </figure>
-      </li>
+         1作品（塊）の中身:
+           <div class="work__media-group"> … 動画/画像を 1個以上 並べる … </div>
+           <figcaption class="work__caption"> 作品タイトル </figcaption>
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/003-loop-circuit/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="回路の鼓動">
-            <source src="works/003-loop-circuit/video.webm" type="video/webm">
-            <source src="works/003-loop-circuit/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">回路の鼓動</figcaption>
-        </figure>
-      </li>
+         メディア部品（コピペ用）:
+         ▼ 動画
+           <video class="work__media" poster="works/NNN-slug/poster.jpg"
+                  width="480" height="270"
+                  autoplay muted loop playsinline preload="metadata"
+                  aria-label="作品名（動画）">
+             <source src="works/NNN-slug/video.webm" type="video/webm">
+             <source src="works/NNN-slug/video.mp4"  type="video/mp4">
+           </video>
+         ▼ 画像（複数なら image-1 / image-2 … と並べる）
+           <picture>
+             <source srcset="works/NNN-slug/image.webp" type="image/webp">
+             <img class="work__media" src="works/NNN-slug/image.jpg"
+                  width="480" height="270" loading="lazy" decoding="async"
+                  alt="作品名（画像）">
+           </picture>
+         ================================================================ -->
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/004-loop-drift/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="漂流">
-            <source src="works/004-loop-drift/video.webm" type="video/webm">
-            <source src="works/004-loop-drift/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">漂流</figcaption>
-        </figure>
-      </li>
+    <section class="category">
+      <h2 class="category__label">ゲーム作品</h2>
+      <ul class="gallery" role="list">
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/005-loop-ember/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="残り火">
-            <source src="works/005-loop-ember/video.webm" type="video/webm">
-            <source src="works/005-loop-ember/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">残り火</figcaption>
-        </figure>
-      </li>
+        <!-- 動画 + 画像 の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/001-loop-aurora/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="オーロラの呼吸（動画）">
+                <source src="works/001-loop-aurora/video.webm" type="video/webm">
+                <source src="works/001-loop-aurora/video.mp4"  type="video/mp4">
+              </video>
+              <picture>
+                <source srcset="works/001-loop-aurora/image.webp" type="image/webp">
+                <img class="work__media" src="works/001-loop-aurora/image.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="オーロラの呼吸（画像）">
+              </picture>
+            </div>
+            <figcaption class="work__caption">オーロラの呼吸</figcaption>
+          </figure>
+        </li>
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/006-loop-flux/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="ゆらぎ">
-            <source src="works/006-loop-flux/video.webm" type="video/webm">
-            <source src="works/006-loop-flux/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">ゆらぎ</figcaption>
-        </figure>
-      </li>
+        <!-- 動画のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/002-loop-bloom/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="開花のループ（動画）">
+                <source src="works/002-loop-bloom/video.webm" type="video/webm">
+                <source src="works/002-loop-bloom/video.mp4"  type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="work__caption">開花のループ</figcaption>
+          </figure>
+        </li>
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/007-loop-glow/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="微光">
-            <source src="works/007-loop-glow/video.webm" type="video/webm">
-            <source src="works/007-loop-glow/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">微光</figcaption>
-        </figure>
-      </li>
+        <!-- 動画 + 画像 の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/003-loop-circuit/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="回路の鼓動（動画）">
+                <source src="works/003-loop-circuit/video.webm" type="video/webm">
+                <source src="works/003-loop-circuit/video.mp4"  type="video/mp4">
+              </video>
+              <picture>
+                <source srcset="works/003-loop-circuit/image.webp" type="image/webp">
+                <img class="work__media" src="works/003-loop-circuit/image.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="回路の鼓動（画像）">
+              </picture>
+            </div>
+            <figcaption class="work__caption">回路の鼓動</figcaption>
+          </figure>
+        </li>
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/008-loop-halo/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="光輪">
-            <source src="works/008-loop-halo/video.webm" type="video/webm">
-            <source src="works/008-loop-halo/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">光輪</figcaption>
-        </figure>
-      </li>
+        <!-- 動画のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/004-loop-drift/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="漂流（動画）">
+                <source src="works/004-loop-drift/video.webm" type="video/webm">
+                <source src="works/004-loop-drift/video.mp4"  type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="work__caption">漂流</figcaption>
+          </figure>
+        </li>
 
-      <li>
-        <figure class="work">
-          <video class="work__media"
-                 poster="works/009-loop-iris/poster.jpg"
-                 width="480" height="270"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="虹彩">
-            <source src="works/009-loop-iris/video.webm" type="video/webm">
-            <source src="works/009-loop-iris/video.mp4" type="video/mp4">
-          </video>
-          <figcaption class="work__caption">虹彩</figcaption>
-        </figure>
-      </li>
+      </ul>
+    </section>
 
-      <!-- ============================================================
-           画像作品テンプレート（コピペで複製）
-           - works/NNN-slug/ に image.jpg を置く
-           - image.webp は任意（あれば<source>で優先配信）
-           - alt は作品タイトル。width/height で CLS 防止
-           ============================================================ -->
-      <li>
-        <figure class="work">
-          <picture>
-            <source srcset="works/010-still-jade/image.webp" type="image/webp">
-            <img class="work__media"
-                 src="works/010-still-jade/image.jpg"
-                 width="480" height="270" loading="lazy" decoding="async"
-                 alt="翡翠">
-          </picture>
-          <figcaption class="work__caption">翡翠</figcaption>
-        </figure>
-      </li>
+    <section class="category">
+      <h2 class="category__label">VRChat ワールド制作</h2>
+      <ul class="gallery" role="list">
 
-      <li>
-        <figure class="work">
-          <picture>
-            <source srcset="works/011-still-koi/image.webp" type="image/webp">
-            <img class="work__media"
-                 src="works/011-still-koi/image.jpg"
-                 width="480" height="270" loading="lazy" decoding="async"
-                 alt="鯉">
-          </picture>
-          <figcaption class="work__caption">鯉</figcaption>
-        </figure>
-      </li>
+        <!-- 動画 + 画像×2 の塊（複数画像の例） -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/005-loop-ember/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="残り火（動画）">
+                <source src="works/005-loop-ember/video.webm" type="video/webm">
+                <source src="works/005-loop-ember/video.mp4"  type="video/mp4">
+              </video>
+              <picture>
+                <source srcset="works/005-loop-ember/image-1.webp" type="image/webp">
+                <img class="work__media" src="works/005-loop-ember/image-1.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="残り火（画像1）">
+              </picture>
+              <picture>
+                <source srcset="works/005-loop-ember/image-2.webp" type="image/webp">
+                <img class="work__media" src="works/005-loop-ember/image-2.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="残り火（画像2）">
+              </picture>
+            </div>
+            <figcaption class="work__caption">残り火</figcaption>
+          </figure>
+        </li>
 
-      <li>
-        <figure class="work">
-          <picture>
-            <source srcset="works/012-still-lumen/image.webp" type="image/webp">
-            <img class="work__media"
-                 src="works/012-still-lumen/image.jpg"
-                 width="480" height="270" loading="lazy" decoding="async"
-                 alt="ルーメン">
-          </picture>
-          <figcaption class="work__caption">ルーメン</figcaption>
-        </figure>
-      </li>
+        <!-- 動画 + 画像 の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/006-loop-flux/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="ゆらぎ（動画）">
+                <source src="works/006-loop-flux/video.webm" type="video/webm">
+                <source src="works/006-loop-flux/video.mp4"  type="video/mp4">
+              </video>
+              <picture>
+                <source srcset="works/006-loop-flux/image.webp" type="image/webp">
+                <img class="work__media" src="works/006-loop-flux/image.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="ゆらぎ（画像）">
+              </picture>
+            </div>
+            <figcaption class="work__caption">ゆらぎ</figcaption>
+          </figure>
+        </li>
 
-    </ul>
+        <!-- 動画のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/007-loop-glow/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="微光（動画）">
+                <source src="works/007-loop-glow/video.webm" type="video/webm">
+                <source src="works/007-loop-glow/video.mp4"  type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="work__caption">微光</figcaption>
+          </figure>
+        </li>
+
+        <!-- 動画のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/008-loop-halo/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="光輪（動画）">
+                <source src="works/008-loop-halo/video.webm" type="video/webm">
+                <source src="works/008-loop-halo/video.mp4"  type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="work__caption">光輪</figcaption>
+          </figure>
+        </li>
+
+        <!-- 動画のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <video class="work__media" poster="works/009-loop-iris/poster.jpg"
+                     width="480" height="270"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="虹彩（動画）">
+                <source src="works/009-loop-iris/video.webm" type="video/webm">
+                <source src="works/009-loop-iris/video.mp4"  type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="work__caption">虹彩</figcaption>
+          </figure>
+        </li>
+
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2 class="category__label">その他</h2>
+      <ul class="gallery" role="list">
+
+        <!-- 画像のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <picture>
+                <source srcset="works/010-still-jade/image.webp" type="image/webp">
+                <img class="work__media" src="works/010-still-jade/image.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="翡翠">
+              </picture>
+            </div>
+            <figcaption class="work__caption">翡翠</figcaption>
+          </figure>
+        </li>
+
+        <!-- 画像のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <picture>
+                <source srcset="works/011-still-koi/image.webp" type="image/webp">
+                <img class="work__media" src="works/011-still-koi/image.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="鯉">
+              </picture>
+            </div>
+            <figcaption class="work__caption">鯉</figcaption>
+          </figure>
+        </li>
+
+        <!-- 画像のみ の塊 -->
+        <li>
+          <figure class="work">
+            <div class="work__media-group">
+              <picture>
+                <source srcset="works/012-still-lumen/image.webp" type="image/webp">
+                <img class="work__media" src="works/012-still-lumen/image.jpg"
+                     width="480" height="270" loading="lazy" decoding="async"
+                     alt="ルーメン">
+              </picture>
+            </div>
+            <figcaption class="work__caption">ルーメン</figcaption>
+          </figure>
+        </li>
+
+      </ul>
+    </section>
+
   </main>
 
   <script src="main.js"></script>

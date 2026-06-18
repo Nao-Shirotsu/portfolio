@@ -61,25 +61,52 @@ body {
   font-size: 0.95rem;
 }
 
+/* --- カテゴリ（見出し + その配下のグリッド） --- */
+.category {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.category:last-of-type {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+/* markdown の見出しのようなカテゴリラベル */
+.category__label {
+  margin: clamp(1.5rem, 4vw, 2.75rem) 0 clamp(0.9rem, 2vw, 1.25rem);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--hairline);
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 /* --- 作品グリッド --- */
 .gallery {
   list-style: none;
-  margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
-  max-width: var(--maxw);
+  margin: 0;
+  padding: 0;
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--gap);
+  align-items: start; /* 塊ごとに高さが違っても上端で揃える */
 }
 
-/* --- 1作品セル --- */
+/* --- 1作品の塊 --- */
 .work {
   margin: 0;
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: 6px;
   overflow: hidden;
+}
+
+/* 塊の中の複数メディア（動画/画像）を縦に積む */
+.work__media-group {
+  display: flex;
+  flex-direction: column;
 }
 
 /* メディア（動画・画像共通）。16:9 で CLS を防ぎ、面いっぱいに表示 */
@@ -90,6 +117,11 @@ body {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   background: #ECEEF1; /* 読み込み前のプレースホルダ色 */
+}
+
+/* 同じ塊内でメディアが続くとき、間に細い区切りを入れる */
+.work__media-group > * + * {
+  border-top: 1px solid var(--hairline);
 }
 
 .work picture { display: block; }
