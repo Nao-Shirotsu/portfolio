@@ -9,12 +9,20 @@
 
 ```
 /
-├── index.html      # 単一ページ。<figure> を規則的に並べる（後で 11ty 化しやすい形）
-├── style.css       # デザイン案2「白い展示室」。手書きCSS
-├── main.js         # IntersectionObserver による動画の再生/停止制御のみ
+├── index.html             # 単一ページ。works/ の内容に合わせて生成する
+├── style.css              # デザイン案2「白い展示室」。手書きCSS
+├── main.js                # IntersectionObserver による動画の再生/停止制御のみ
+├── CONTENT-ADDITION.md    # 作品の追加・差し替えガイド（まずこれを読む）
 └── works/
-    └── NNN-slug/   # 1作品 = 1ディレクトリ
+    └── <カテゴリ>/
+        └── NNN-slug/      # 1作品 = 1ディレクトリ（メディア + caption.txt）
 ```
+
+## 作品の追加・差し替え → [CONTENT-ADDITION.md](CONTENT-ADDITION.md)
+
+運用は **「`works/` にファイルを置く → Claude Code に `index.html` 再生成を頼む」** 方式。
+具体的な手順・命名規則・依頼テンプレは **[CONTENT-ADDITION.md](CONTENT-ADDITION.md)** に集約。
+（動画・画像ファイルの差し替えだけなら同名上書きのみで `index.html` 編集は不要）
 
 ## ページ構造（カテゴリ × 作品の塊）
 
@@ -29,34 +37,11 @@
 - メディアは記述順に**上から縦に**並ぶ。キャプションは塊の最後に1行。
 - カテゴリは見出しの下にぶら下がる。カテゴリ自体は `index.html` の `<section>` を増減して管理する（フォルダ構成とは無関係）。
 
-## 作品ファイルの命名規則（重要）
-
-1作品ぶんのファイルは `works/NNN-slug/` に置く（`NNN`=3桁通し番号、`slug`=半角英小文字とハイフン）。例: `013-loop-spark`
-
-| 用途 | 必須ファイル | 任意ファイル |
-|------|--------------|--------------|
-| 動画 | `video.mp4`（H.264）, `poster.jpg` | `video.webm`（VP9。あれば優先配信） |
-| 画像（1枚） | `image.jpg` | `image.webp`（あれば優先配信） |
-| 画像（複数枚） | `image-1.jpg`, `image-2.jpg`, … | `image-1.webp`, `image-2.webp`, … |
-
-- 動画と画像を**同じ塊に同居**させる場合は、同じフォルダに両方のファイルを置く（例: `video.mp4` + `poster.jpg` + `image.jpg`）。
-- **差し替えは「同名ファイルを上書きするだけ」**。`index.html` の編集は不要。
+> 命名規則（カテゴリ / `NNN-slug` / `caption.txt` / メディアファイル名）と
+> 追加・差し替えの具体手順は [CONTENT-ADDITION.md](CONTENT-ADDITION.md) を参照。
 
 > 現在 `works/` に入っているのはレイアウト確認用の **プレースホルダ**（generated パターン、著作物なし）。
 > 本番メディアを**同じファイル名で上書き**すれば差し替え完了。
-
-## 作品を新規追加する手順
-
-1. `works/NNN-slug/` を作り、上表のファイルを置く。
-2. `index.html` で追加したいカテゴリ `<section>` 内の `<ul class="gallery">` に、既存の `<li><figure class="work">…</figure></li>` ブロックを1つコピペ複製する。
-   - 塊に複数メディアを入れたいときは、`<div class="work__media-group">` の中に動画/画像の部品（`index.html` 冒頭のテンプレートコメント参照）を必要な数だけ並べる。
-3. コピペしたブロックの **パス（`works/NNN-slug/…`）と 作品タイトル**（各メディアの `aria-label`／`alt`、`figcaption` の3系統）を書き換える。
-
-## カテゴリを追加・変更する手順
-
-- 追加: `<main>` 内に `<section class="category"><h2 class="category__label">カテゴリ名</h2><ul class="gallery" role="list"> … </ul></section>` を増やす。
-- 並べ替え: `<section>` ブロックごと上下に動かす。
-- 改名: `<h2 class="category__label">` のテキストを書き換えるだけ。
 
 ## 動画ファイルの推奨仕様
 
