@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="しろつ｜作品一覧">
   <meta property="og:description" content="しろつの制作物（動くループ作品と画像）の一覧。">
-  <meta property="og:image" content="works/ゲーム制作/001-yudebu/poster.jpg">
+  <meta property="og:image" content="works/01-ゲーム制作/001-yudebu/poster.jpg">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -22,37 +22,10 @@
 
   <main>
 
-    <!-- ================================================================
-         このファイルは「作品の追加ガイド」(CONTENT-ADDITION.md) に基づき
-         works/ フォルダの内容から再生成されます。手編集も可能です。
-
-         構造:
-           カテゴリ = <section class="category"> + <h2 class="category__label">
-           作品の塊 = <li><figure class="work">
-             <div class="work__media-group"> … 動画/画像を1個以上 …
-             <figcaption class="work__caption"> caption.txt の1行目 …
-
-         パスの注意: フォルダ名に半角スペースは使わない（パスは日本語そのままでOK）。
-           見出しの表示名を別テキストにしたい場合のみ、カテゴリ直下に _label.txt を置く
-           （例: works/VRChatワールド制作/_label.txt = "VRChat ワールド制作"）
-
-         メディア部品（コピペ用）:
-         ▼ 動画
-           <video class="work__media" poster="works/CAT/NNN-slug/poster.jpg"
-                  width="480" height="270"
-                  autoplay muted loop playsinline preload="metadata"
-                  aria-label="作品名（動画）">
-             <source src="works/CAT/NNN-slug/video.webm" type="video/webm">
-             <source src="works/CAT/NNN-slug/video.mp4"  type="video/mp4">
-           </video>
-         ▼ 画像（複数なら image-1 / image-2 … と並べる）
-           <picture>
-             <source srcset="works/CAT/NNN-slug/image.webp" type="image/webp">
-             <img class="work__media" src="works/CAT/NNN-slug/image.jpg"
-                  width="480" height="270" loading="lazy" decoding="async"
-                  alt="作品名（画像）">
-           </picture>
-         ================================================================ -->
+    <!-- この作品一覧は build.py が works/ から再生成します（実行: python build.py）。
+         WORKS:START 〜 WORKS:END の間は自動生成領域。手編集しても次回ビルドで上書きされます。
+         works/ のフォルダ規約・運用手順は README.md を参照。 -->
+    <!-- WORKS:START -->
 
     <section class="category">
       <h2 class="category__label">ゲーム作品</h2>
@@ -61,16 +34,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/ゲーム制作/001-yudebu/poster.jpg"
+              <video class="work__media" poster="works/01-ゲーム制作/001-yudebu/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="幽鬼電脳ブレイクロア（動画）">
-                <source src="works/ゲーム制作/001-yudebu/video.webm" type="video/webm">
-                <source src="works/ゲーム制作/001-yudebu/video.mp4"  type="video/mp4">
+                <source src="works/01-ゲーム制作/001-yudebu/video.webm" type="video/webm">
+                <source src="works/01-ゲーム制作/001-yudebu/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/ゲーム制作/001-yudebu/image.webp" type="image/webp">
-                <img class="work__media" src="works/ゲーム制作/001-yudebu/image.jpg"
+                <source srcset="works/01-ゲーム制作/001-yudebu/image.webp" type="image/webp">
+                <img class="work__media" src="works/01-ゲーム制作/001-yudebu/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="幽鬼電脳ブレイクロア（画像）">
               </picture>
@@ -82,16 +55,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/ゲーム制作/002-solace/poster.jpg"
+              <video class="work__media" poster="works/01-ゲーム制作/002-solace/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="Solace: beyond lives（動画）">
-                <source src="works/ゲーム制作/002-solace/video.webm" type="video/webm">
-                <source src="works/ゲーム制作/002-solace/video.mp4"  type="video/mp4">
+                <source src="works/01-ゲーム制作/002-solace/video.webm" type="video/webm">
+                <source src="works/01-ゲーム制作/002-solace/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/ゲーム制作/002-solace/image.webp" type="image/webp">
-                <img class="work__media" src="works/ゲーム制作/002-solace/image.jpg"
+                <source srcset="works/01-ゲーム制作/002-solace/image.webp" type="image/webp">
+                <img class="work__media" src="works/01-ゲーム制作/002-solace/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Solace: beyond lives（画像）">
               </picture>
@@ -103,16 +76,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/ゲーム制作/003-alhythm/poster.jpg"
+              <video class="work__media" poster="works/01-ゲーム制作/003-alhythm/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="Alhythm（動画）">
-                <source src="works/ゲーム制作/003-alhythm/video.webm" type="video/webm">
-                <source src="works/ゲーム制作/003-alhythm/video.mp4"  type="video/mp4">
+                <source src="works/01-ゲーム制作/003-alhythm/video.webm" type="video/webm">
+                <source src="works/01-ゲーム制作/003-alhythm/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/ゲーム制作/003-alhythm/image.webp" type="image/webp">
-                <img class="work__media" src="works/ゲーム制作/003-alhythm/image.jpg"
+                <source srcset="works/01-ゲーム制作/003-alhythm/image.webp" type="image/webp">
+                <img class="work__media" src="works/01-ゲーム制作/003-alhythm/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Alhythm（画像）">
               </picture>
@@ -131,16 +104,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/グラフィックス実装/001-edupt/poster.jpg"
+              <video class="work__media" poster="works/02-グラフィックス実装/001-edupt/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="初めて書いた物理ベースレンダラ（動画）">
-                <source src="works/グラフィックス実装/001-edupt/video.webm" type="video/webm">
-                <source src="works/グラフィックス実装/001-edupt/video.mp4"  type="video/mp4">
+                <source src="works/02-グラフィックス実装/001-edupt/video.webm" type="video/webm">
+                <source src="works/02-グラフィックス実装/001-edupt/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/グラフィックス実装/001-edupt/image.webp" type="image/webp">
-                <img class="work__media" src="works/グラフィックス実装/001-edupt/image.jpg"
+                <source srcset="works/02-グラフィックス実装/001-edupt/image.webp" type="image/webp">
+                <img class="work__media" src="works/02-グラフィックス実装/001-edupt/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="初めて書いた物理ベースレンダラ（画像）">
               </picture>
@@ -152,16 +125,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/グラフィックス実装/002-cgrs/poster.jpg"
+              <video class="work__media" poster="works/02-グラフィックス実装/002-cgrs/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="描画メソッド切替レンダラ（動画）">
-                <source src="works/グラフィックス実装/002-cgrs/video.webm" type="video/webm">
-                <source src="works/グラフィックス実装/002-cgrs/video.mp4"  type="video/mp4">
+                <source src="works/02-グラフィックス実装/002-cgrs/video.webm" type="video/webm">
+                <source src="works/02-グラフィックス実装/002-cgrs/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/グラフィックス実装/002-cgrs/image.webp" type="image/webp">
-                <img class="work__media" src="works/グラフィックス実装/002-cgrs/image.jpg"
+                <source srcset="works/02-グラフィックス実装/002-cgrs/image.webp" type="image/webp">
+                <img class="work__media" src="works/02-グラフィックス実装/002-cgrs/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="描画メソッド切替レンダラ（画像）">
               </picture>
@@ -173,16 +146,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/グラフィックス実装/003-vchaphotoview/poster.jpg"
+              <video class="work__media" poster="works/02-グラフィックス実装/003-vchaphotoview/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="VRChat向け PCVR内で画像閲覧するツール（動画）">
-                <source src="works/グラフィックス実装/003-vchaphotoview/video.webm" type="video/webm">
-                <source src="works/グラフィックス実装/003-vchaphotoview/video.mp4"  type="video/mp4">
+                <source src="works/02-グラフィックス実装/003-vchaphotoview/video.webm" type="video/webm">
+                <source src="works/02-グラフィックス実装/003-vchaphotoview/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/グラフィックス実装/003-vchaphotoview/image.webp" type="image/webp">
-                <img class="work__media" src="works/グラフィックス実装/003-vchaphotoview/image.jpg"
+                <source srcset="works/02-グラフィックス実装/003-vchaphotoview/image.webp" type="image/webp">
+                <img class="work__media" src="works/02-グラフィックス実装/003-vchaphotoview/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="VRChat向け PCVR内で画像閲覧するツール（画像）">
               </picture>
@@ -194,16 +167,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/グラフィックス実装/004-pencilshader/poster.jpg"
+              <video class="work__media" poster="works/02-グラフィックス実装/004-pencilshader/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="鉛筆シェーダー（動画）">
-                <source src="works/グラフィックス実装/004-pencilshader/video.webm" type="video/webm">
-                <source src="works/グラフィックス実装/004-pencilshader/video.mp4"  type="video/mp4">
+                <source src="works/02-グラフィックス実装/004-pencilshader/video.webm" type="video/webm">
+                <source src="works/02-グラフィックス実装/004-pencilshader/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/グラフィックス実装/004-pencilshader/image.webp" type="image/webp">
-                <img class="work__media" src="works/グラフィックス実装/004-pencilshader/image.jpg"
+                <source srcset="works/02-グラフィックス実装/004-pencilshader/image.webp" type="image/webp">
+                <img class="work__media" src="works/02-グラフィックス実装/004-pencilshader/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="鉛筆シェーダー（画像）">
               </picture>
@@ -215,16 +188,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/グラフィックス実装/005-iceshader/poster.jpg"
+              <video class="work__media" poster="works/02-グラフィックス実装/005-iceshader/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="氷シェーダー (lilToon custom shader)（動画）">
-                <source src="works/グラフィックス実装/005-iceshader/video.webm" type="video/webm">
-                <source src="works/グラフィックス実装/005-iceshader/video.mp4"  type="video/mp4">
+                <source src="works/02-グラフィックス実装/005-iceshader/video.webm" type="video/webm">
+                <source src="works/02-グラフィックス実装/005-iceshader/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/グラフィックス実装/005-iceshader/image.webp" type="image/webp">
-                <img class="work__media" src="works/グラフィックス実装/005-iceshader/image.jpg"
+                <source srcset="works/02-グラフィックス実装/005-iceshader/image.webp" type="image/webp">
+                <img class="work__media" src="works/02-グラフィックス実装/005-iceshader/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="氷シェーダー (lilToon custom shader)（画像）">
               </picture>
@@ -243,22 +216,22 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/VRChatワールド制作/001-ember/poster.jpg"
+              <video class="work__media" poster="works/03-VRChatワールド制作/001-ember/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="残り火 / The Ember（動画）">
-                <source src="works/VRChatワールド制作/001-ember/video.webm" type="video/webm">
-                <source src="works/VRChatワールド制作/001-ember/video.mp4"  type="video/mp4">
+                <source src="works/03-VRChatワールド制作/001-ember/video.webm" type="video/webm">
+                <source src="works/03-VRChatワールド制作/001-ember/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/VRChatワールド制作/001-ember/image-1.webp" type="image/webp">
-                <img class="work__media" src="works/VRChatワールド制作/001-ember/image-1.jpg"
+                <source srcset="works/03-VRChatワールド制作/001-ember/image-1.webp" type="image/webp">
+                <img class="work__media" src="works/03-VRChatワールド制作/001-ember/image-1.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="残り火 / The Ember（画像1）">
               </picture>
               <picture>
-                <source srcset="works/VRChatワールド制作/001-ember/image-2.webp" type="image/webp">
-                <img class="work__media" src="works/VRChatワールド制作/001-ember/image-2.jpg"
+                <source srcset="works/03-VRChatワールド制作/001-ember/image-2.webp" type="image/webp">
+                <img class="work__media" src="works/03-VRChatワールド制作/001-ember/image-2.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="残り火 / The Ember（画像2）">
               </picture>
@@ -270,22 +243,22 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/VRChatワールド制作/002-lazy/poster.jpg"
+              <video class="work__media" poster="works/03-VRChatワールド制作/002-lazy/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="Lazy Rainy Chillout, at 3 A.M.（動画）">
-                <source src="works/VRChatワールド制作/002-lazy/video.webm" type="video/webm">
-                <source src="works/VRChatワールド制作/002-lazy/video.mp4"  type="video/mp4">
+                <source src="works/03-VRChatワールド制作/002-lazy/video.webm" type="video/webm">
+                <source src="works/03-VRChatワールド制作/002-lazy/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/VRChatワールド制作/002-lazy/image-1.webp" type="image/webp">
-                <img class="work__media" src="works/VRChatワールド制作/002-lazy/image-1.jpg"
+                <source srcset="works/03-VRChatワールド制作/002-lazy/image-1.webp" type="image/webp">
+                <img class="work__media" src="works/03-VRChatワールド制作/002-lazy/image-1.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Lazy Rainy Chillout, at 3 A.M.（画像1）">
               </picture>
               <picture>
-                <source srcset="works/VRChatワールド制作/002-lazy/image-2.webp" type="image/webp">
-                <img class="work__media" src="works/VRChatワールド制作/002-lazy/image-2.jpg"
+                <source srcset="works/03-VRChatワールド制作/002-lazy/image-2.webp" type="image/webp">
+                <img class="work__media" src="works/03-VRChatワールド制作/002-lazy/image-2.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Lazy Rainy Chillout, at 3 A.M.（画像2）">
               </picture>
@@ -304,16 +277,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/コミュニティ運営/001-verypoor/poster.jpg"
+              <video class="work__media" poster="works/04-コミュニティ運営/001-verypoor/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="3DCG作業会 ベリープア（動画）">
-                <source src="works/コミュニティ運営/001-verypoor/video.webm" type="video/webm">
-                <source src="works/コミュニティ運営/001-verypoor/video.mp4"  type="video/mp4">
+                <source src="works/04-コミュニティ運営/001-verypoor/video.webm" type="video/webm">
+                <source src="works/04-コミュニティ運営/001-verypoor/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/コミュニティ運営/001-verypoor/image.webp" type="image/webp">
-                <img class="work__media" src="works/コミュニティ運営/001-verypoor/image.jpg"
+                <source srcset="works/04-コミュニティ運営/001-verypoor/image.webp" type="image/webp">
+                <img class="work__media" src="works/04-コミュニティ運営/001-verypoor/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="3DCG作業会 ベリープア（画像）">
               </picture>
@@ -325,16 +298,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/コミュニティ運営/002-unitykowakunai/poster.jpg"
+              <video class="work__media" poster="works/04-コミュニティ運営/002-unitykowakunai/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="Unityこわくないよ講座（動画）">
-                <source src="works/コミュニティ運営/002-unitykowakunai/video.webm" type="video/webm">
-                <source src="works/コミュニティ運営/002-unitykowakunai/video.mp4"  type="video/mp4">
+                <source src="works/04-コミュニティ運営/002-unitykowakunai/video.webm" type="video/webm">
+                <source src="works/04-コミュニティ運営/002-unitykowakunai/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/コミュニティ運営/002-unitykowakunai/image.webp" type="image/webp">
-                <img class="work__media" src="works/コミュニティ運営/002-unitykowakunai/image.jpg"
+                <source srcset="works/04-コミュニティ運営/002-unitykowakunai/image.webp" type="image/webp">
+                <img class="work__media" src="works/04-コミュニティ運営/002-unitykowakunai/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Unityこわくないよ講座（画像）">
               </picture>
@@ -346,16 +319,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/コミュニティ運営/003-alhythm/poster.jpg"
+              <video class="work__media" poster="works/04-コミュニティ運営/003-alhythm/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="Online Game-Tech LT（動画）">
-                <source src="works/コミュニティ運営/003-alhythm/video.webm" type="video/webm">
-                <source src="works/コミュニティ運営/003-alhythm/video.mp4"  type="video/mp4">
+                <source src="works/04-コミュニティ運営/003-alhythm/video.webm" type="video/webm">
+                <source src="works/04-コミュニティ運営/003-alhythm/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/コミュニティ運営/003-alhythm/image.webp" type="image/webp">
-                <img class="work__media" src="works/コミュニティ運営/003-alhythm/image.jpg"
+                <source srcset="works/04-コミュニティ運営/003-alhythm/image.webp" type="image/webp">
+                <img class="work__media" src="works/04-コミュニティ運営/003-alhythm/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Online Game-Tech LT（画像）">
               </picture>
@@ -378,8 +351,8 @@
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="hoge（動画）">
-                <source src="works/動画制作/001-verypoor/video.webm" type="video/webm">
-                <source src="works/動画制作/001-verypoor/video.mp4"  type="video/mp4">
+                <source src="works/05-動画制作/001-verypoor/video.webm" type="video/webm">
+                <source src="works/05-動画制作/001-verypoor/video.mp4"  type="video/mp4">
               </video>
             </div>
             <figcaption class="work__caption">hoge</figcaption>
@@ -396,16 +369,16 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/LT/001-hoge/poster.jpg"
+              <video class="work__media" poster="works/06-LT/001-hoge/poster.jpg"
                      width="480" height="270"
                      autoplay muted loop playsinline preload="metadata"
                      aria-label="LT001（動画）">
-                <source src="works/LT/001-hoge/video.webm" type="video/webm">
-                <source src="works/LT/001-hoge/video.mp4"  type="video/mp4">
+                <source src="works/06-LT/001-hoge/video.webm" type="video/webm">
+                <source src="works/06-LT/001-hoge/video.mp4"  type="video/mp4">
               </video>
               <picture>
-                <source srcset="works/LT/001-hoge/image.webp" type="image/webp">
-                <img class="work__media" src="works/LT/001-hoge/image.jpg"
+                <source srcset="works/06-LT/001-hoge/image.webp" type="image/webp">
+                <img class="work__media" src="works/06-LT/001-hoge/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="LT001（画像）">
               </picture>
@@ -425,10 +398,10 @@
           <figure class="work">
             <div class="work__media-group">
               <picture>
-                <source srcset="works/技術記事/001-hoge/image.webp" type="image/webp">
-                <img class="work__media" src="works/技術記事/001-hoge/image.jpg"
+                <source srcset="works/07-技術記事/001-hoge/image.webp" type="image/webp">
+                <img class="work__media" src="works/07-技術記事/001-hoge/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
-                     alt="kiji001">
+                     alt="kiji001（画像）">
               </picture>
             </div>
             <figcaption class="work__caption">kiji001</figcaption>
@@ -437,6 +410,8 @@
 
       </ul>
     </section>
+
+    <!-- WORKS:END -->
 
   </main>
 
