@@ -1,1 +1,3 @@
 描画メソッド切替レンダラ
+
+image https://github.com/Nao-Shirotsu/Embree-CGES GitHubリポジトリ

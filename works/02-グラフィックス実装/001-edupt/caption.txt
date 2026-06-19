@@ -1,1 +1,3 @@
 初めて書いた物理ベースレンダラ
+
+image https://github.com/Nao-Shirotsu/PathTracing_CornellBoxRenderer GitHubリポジトリ
