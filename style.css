@@ -56,6 +56,14 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* タイトル後ろの「ポートフォリオ」：同じ行・ちょい小さめ・ほんのすこしグレー */
+.site-title__sub {
+  margin-left: 0.5em;
+  font-size: 0.6em;
+  font-weight: 600;
+  color: var(--subtext);
+}
+
 .site-intro {
   margin: 0.4rem 0 0;
   color: var(--subtext);
@@ -191,6 +199,21 @@ body {
   font-size: 0.875rem;
   line-height: 1.4;
   text-align: center;
+
+  /* 常に2行分の高さで固定し、その枠の中で縦横中央に寄せる（カード下端を揃える） */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(2 * 1.4em + 0.6rem + 0.75rem); /* 2行 + 上下パディング */
+}
+
+/* 行クランプ（3行以上は…で省略）は内側に分離。flex 中央寄せと両立させるため */
+.work__caption-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 /* --- リンク（差し色はここだけ） --- */

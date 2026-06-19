@@ -68,24 +68,27 @@ def image_file(work: Path, stem: str):
 
 
 def caption_meta(work: Path):
-    """caption.txt を読み (caption_lines, links, portrait) を返す。
+    """caption.txt を読み (caption_lines, links, portrait, order) を返す。
 
     空行を境にキャプションとメタ情報を分ける:
       空行より前 = キャプション（複数行可。各行が改行表示される）
-      空行より後 = メタ行（リンク / 縦メディア指定）
+      空行より後 = メタ行（リンク / 縦メディア指定 / 表示順指定）
           リンク:   「<メディア名> <URL> [見出し]」
               <メディア名> はファイル名の stem（video / image / image-1 / image-2 …）
               <URL>       そのメディアのリンク先
               [見出し]     任意。省略時は「作品リリースページ」
           縦メディア: 「vertical <メディア名> [<メディア名> …]」
               並べた縦画像/縦動画を縦長スロット（横画像2枚分の高さ）で表示する
+          表示順:    「order <メディア名> [<メディア名> …]」
+              書いた順にメディアを並べる。書かれていないメディアは既定順で後ろに付く
     空行が無ければ全体がキャプション（メタ無し）。
 
-    links は {メディア名: (url, 見出し)} の dict、portrait は縦メディア名の set。
+    links は {メディア名: (url, 見出し)} の dict、portrait は縦メディア名の set、
+    order はメディア名の並び（list）。
     """
     path = work / "caption.txt"
     if not path.is_file():
-        return [], {}, set()
+        return [], {}, set(), []
     raw = [ln.strip() for ln in path.read_text(encoding="utf-8").splitlines()]
 
     # 最初の空行で前（キャプション）と後（メタ）に分割
@@ -99,21 +102,26 @@ def caption_meta(work: Path):
 
     links = {}
     portrait = set()
+    order = []
     for line in meta:
         tokens = line.split()
         # 縦メディア指定: 「vertical key key …」
         if tokens and tokens[0] == "vertical":
             portrait.update(tokens[1:])
             continue
+        # 表示順指定: 「order key key …」
+        if tokens and tokens[0] == "order":
+            order.extend(tokens[1:])
+            continue
         # リンク行: 「key url [見出し]」
         if len(tokens) < 2:
-            print(f"  ! caption.txt のメタ行を無視（「メディア名 URL [見出し]」か「vertical メディア名…」）: {line!r}",
+            print(f"  ! caption.txt のメタ行を無視（「メディア名 URL [見出し]」/「vertical …」/「order …」）: {line!r}",
                   file=sys.stderr)
             continue
         key, url = tokens[0], tokens[1]
         title = " ".join(tokens[2:]) if len(tokens) >= 3 else DEFAULT_LINK_TITLE
         links[key] = (url, title)
-    return caption_lines, links, portrait
+    return caption_lines, links, portrait, order
 
 
 def numbered_dirs(parent: Path):
@@ -195,34 +203,37 @@ def link_wrap(block: str, link, caption: str, label_suffix: str) -> str:
     )
 
 
-def media_blocks(work: Path, rel: str, caption: str, links: dict, portrait: set) -> list:
-    """作品フォルダ内の在るファイルからメディアブロックを順に組み立てる（動画→画像）。
+def media_blocks(work: Path, rel: str, caption: str, links: dict, portrait: set,
+                 order: list) -> list:
+    """作品フォルダ内の在るファイルからメディアブロックを組み立てて並べる。
 
+    既定順は 動画 → 画像（連番順）。order で並びを上書きできる。
     links に該当キーがあるメディアだけ <a>+オーバーレイで包む（無いものは素のまま）。
     portrait に該当キーがあるメディアは縦長スロットで表示する。
     """
-    blocks = []
+    built = []  # [(key, html), …] を既定順で貯める
     used = set()
 
     def add(block: str, key: str, label_suffix: str):
         used.add(key)
         if key in links:
-            blocks.append(link_wrap(block, links[key], caption, label_suffix))
+            built.append((key, link_wrap(block, links[key], caption, label_suffix)))
         else:
-            blocks.append(block)
+            built.append((key, block))
 
     if (work / "video.mp4").is_file():
         add(video_block(work, rel, caption, "video" in portrait), "video", "動画")
 
-    # 画像: image（1枚）か image-1, image-2…（複数）。拡張子は .jpg / .png のどちらでも可。
+    # 画像: image（1枚）か image-1/image1, image-2/image2…（複数）。
+    # 連番はハイフン有無どちらの命名でもよい。拡張子は .jpg / .png のどちらでも可。
     if image_file(work, "image"):
         add(image_block(work, rel, caption, "image", "画像", "image" in portrait), "image", "画像")
     else:
-        # 連番 stem を集める。同じ番号で .jpg と .png が両方在れば先勝ち（image_file と同じ優先順）。
+        # 連番 stem を集める。同じ番号で複数（.jpg/.png や ハイフン有無）在れば先勝ち。
         numbered = {}
         for ext in IMAGE_EXTS:
-            for p in work.glob(f"image-*{ext}"):
-                m = re.fullmatch(r"image-(\d+)", p.stem)
+            for p in work.glob(f"image*{ext}"):
+                m = re.fullmatch(r"image-?(\d+)", p.stem)  # image-1 も image1 も拾う
                 if m:
                     numbered.setdefault(int(m.group(1)), p.stem)
         for n in sorted(numbered):
@@ -230,19 +241,34 @@ def media_blocks(work: Path, rel: str, caption: str, links: dict, portrait: set)
             add(image_block(work, rel, caption, stem, f"画像{n}", stem in portrait),
                 stem, f"画像{n}")
 
-    for key in set(links) | set(portrait):
+    for key in set(links) | set(portrait) | set(order):
         if key not in used:
             print(f"  ! caption.txt のキー '{key}' に対応するメディアが無い: {rel}",
                   file=sys.stderr)
-    return blocks
+
+    # order で並べ替え: 指定キー（実在するもの）を先頭に、残りは既定順で後ろに付ける
+    if not order:
+        return [html for _, html in built]
+    by_key = dict(built)
+    seen = set()
+    ordered = []
+    for key in order:
+        if key in by_key and key not in seen:
+            ordered.append(by_key[key])
+            seen.add(key)
+    for key, html in built:
+        if key not in seen:
+            ordered.append(html)
+            seen.add(key)
+    return ordered
 
 
 def work_html(work: Path, category_dir: str) -> str:
-    caption_lines, links, portrait = caption_meta(work)
+    caption_lines, links, portrait, order = caption_meta(work)
     caption_attr = " ".join(caption_lines)  # alt/aria-label 用の1行表現
     caption_html = "<br>".join(text(ln) for ln in caption_lines)  # 改行表示
     rel = f"works/{category_dir}/{work.name}"
-    blocks = media_blocks(work, rel, caption_attr, links, portrait)
+    blocks = media_blocks(work, rel, caption_attr, links, portrait, order)
     if not blocks:
         print(f"  ! メディアが無い作品をスキップ: {rel}", file=sys.stderr)
         return ""
@@ -254,7 +280,7 @@ def work_html(work: Path, category_dir: str) -> str:
         '            <div class="work__media-group">\n'
         f"{inner}\n"
         "            </div>\n"
-        f'            <figcaption class="work__caption">{caption_html}</figcaption>\n'
+        f'            <figcaption class="work__caption"><span class="work__caption-text">{caption_html}</span></figcaption>\n'
         "          </figure>\n"
         "        </li>"
     )

@@ -1,3 +1,0 @@
-C++ SSE/AVX 入門の記録
-
-image https://shirotsu.hateblo.jp/entry/2020/01/13/235657 はてなブログ記事

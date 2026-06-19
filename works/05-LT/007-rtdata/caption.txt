@@ -1,0 +1,3 @@
+レイトレーシングのデータ構造
+
+image https://docs.google.com/presentation/d/1FpMjfXyzSJKzS6tCkQGxXAKkUUMfuHkUQDys53wyE1o/edit?usp=sharing 技術サークルLT会での発表

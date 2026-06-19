@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>しろつ｜作品一覧</title>
+  <title>しろつ｜ポートフォリオ</title>
   <meta name="description" content="しろつの制作物（動くループ作品と画像）の一覧。">
 
   <!-- OGP: og:image はクローラ向けに絶対URLが望ましい。独自ドメイン確定後、絶対URLへ書き換えること。 -->
@@ -16,8 +16,8 @@
 </head>
 <body>
   <header class="site-header">
-    <h1 class="site-title">しろつ</h1>
-    <p class="site-intro">動くループ作品と画像をつくっています。</p>
+    <h1 class="site-title">しろつ<span class="site-title__sub">ポートフォリオ</span></h1>
+    <p class="site-intro">グラフィックスエンジニア / ゲームクリエイター</p>
   </header>
 
   <main>
@@ -57,7 +57,7 @@
                      alt="幽鬼電脳ブレイクロア（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">幽鬼電脳ブレイクロア</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">幽鬼電脳ブレイクロア</span></figcaption>
           </figure>
         </li>
 
@@ -80,7 +80,7 @@
                      alt="Solace: beyond lives（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">Solace: beyond lives</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Solace: beyond lives</span></figcaption>
           </figure>
         </li>
 
@@ -103,7 +103,7 @@
                      alt="Alhythm（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">Alhythm</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Alhythm</span></figcaption>
           </figure>
         </li>
 
@@ -133,7 +133,7 @@
                      alt="初めて書いた物理ベースレンダラ（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">初めて書いた物理ベースレンダラ</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">初めて書いた物理ベースレンダラ</span></figcaption>
           </figure>
         </li>
 
@@ -156,7 +156,7 @@
                      alt="描画メソッド切替レンダラ（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">描画メソッド切替レンダラ</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">描画メソッド切替レンダラ</span></figcaption>
           </figure>
         </li>
 
@@ -179,7 +179,7 @@
                      alt="VRChat向け PCVR内で画像閲覧するツール（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">VRChat向け PCVR内で画像閲覧するツール</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">VRChat向け PCVR内で画像閲覧するツール</span></figcaption>
           </figure>
         </li>
 
@@ -202,7 +202,7 @@
                      alt="鉛筆シェーダー（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">鉛筆シェーダー</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">鉛筆シェーダー</span></figcaption>
           </figure>
         </li>
 
@@ -225,7 +225,7 @@
                      alt="氷シェーダー (lilToon custom shader)（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">氷シェーダー (lilToon custom shader)</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">氷シェーダー (lilToon custom shader)</span></figcaption>
           </figure>
         </li>
 
@@ -239,58 +239,67 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/03-VRChatワールド制作/001-ember/poster.jpg"
-                     width="480" height="270"
-                     autoplay muted loop playsinline preload="metadata"
-                     disablepictureinpicture disableremoteplayback
-                     controlslist="nodownload noplaybackrate noremoteplayback"
-                     aria-label="残り火 / The Ember（動画）">
-                <source src="works/03-VRChatワールド制作/001-ember/video.webm" type="video/webm">
-                <source src="works/03-VRChatワールド制作/001-ember/video.mp4"  type="video/mp4">
-              </video>
-              <picture>
-                <source srcset="works/03-VRChatワールド制作/001-ember/image-1.webp" type="image/webp">
-                <img class="work__media" src="works/03-VRChatワールド制作/001-ember/image-1.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="残り火 / The Ember（画像1）">
-              </picture>
-              <picture>
-                <source srcset="works/03-VRChatワールド制作/001-ember/image-2.webp" type="image/webp">
-                <img class="work__media" src="works/03-VRChatワールド制作/001-ember/image-2.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="残り火 / The Ember（画像2）">
-              </picture>
+              <a class="media-link" href="https://vrchat.com/home/launch?worldId=wrld_bb19deaa-83ac-40df-bf41-6ade064cb921"
+                 target="_blank" rel="noopener noreferrer" aria-label="残り火 / The Ember（画像1）｜ワールドURL">
+                <picture>
+                  <img class="work__media" src="works/03-VRChatワールド制作/001-ember/image-1.jpg"
+                       width="480" height="270" loading="lazy" decoding="async"
+                       alt="残り火 / The Ember（画像1）">
+                </picture>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">ワールドURL</span>
+                  <span class="media-overlay-url">https://vrchat.com/home/launch?worldId=wrld_bb19deaa-83ac-40df-bf41-6ade064cb921</span>
+                </span>
+              </a>
+              <a class="media-link" href="https://x.com/4rotsuvrc/status/2045224412451098727?s=20"
+                 target="_blank" rel="noopener noreferrer" aria-label="残り火 / The Ember（画像2）｜X 公開ポスト">
+                <picture>
+                  <img class="work__media" src="works/03-VRChatワールド制作/001-ember/image-2.jpg"
+                       width="480" height="270" loading="lazy" decoding="async"
+                       alt="残り火 / The Ember（画像2）">
+                </picture>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">X 公開ポスト</span>
+                  <span class="media-overlay-url">https://x.com/4rotsuvrc/status/2045224412451098727?s=20</span>
+                </span>
+              </a>
             </div>
-            <figcaption class="work__caption">残り火 / The Ember</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">残り火 / The Ember</span></figcaption>
           </figure>
         </li>
 
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/03-VRChatワールド制作/002-lazy/poster.jpg"
-                     width="480" height="270"
-                     autoplay muted loop playsinline preload="metadata"
-                     disablepictureinpicture disableremoteplayback
-                     controlslist="nodownload noplaybackrate noremoteplayback"
-                     aria-label="Lazy Rainy Chillout, at 3 A.M.（動画）">
-                <source src="works/03-VRChatワールド制作/002-lazy/video.webm" type="video/webm">
-                <source src="works/03-VRChatワールド制作/002-lazy/video.mp4"  type="video/mp4">
-              </video>
-              <picture>
-                <source srcset="works/03-VRChatワールド制作/002-lazy/image-1.webp" type="image/webp">
-                <img class="work__media" src="works/03-VRChatワールド制作/002-lazy/image-1.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="Lazy Rainy Chillout, at 3 A.M.（画像1）">
-              </picture>
-              <picture>
-                <source srcset="works/03-VRChatワールド制作/002-lazy/image-2.webp" type="image/webp">
-                <img class="work__media" src="works/03-VRChatワールド制作/002-lazy/image-2.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="Lazy Rainy Chillout, at 3 A.M.（画像2）">
-              </picture>
+              <a class="media-link" href="https://vrchat.com/home/launch?worldId=wrld_cab5849f-5ebd-4414-918f-c7d75a195ef4"
+                 target="_blank" rel="noopener noreferrer" aria-label="Lazy Rainy Chillout, at 3 A.M.（画像）｜ワールドURL">
+                <picture>
+                  <img class="work__media" src="works/03-VRChatワールド制作/002-lazy/image.png"
+                       width="480" height="270" loading="lazy" decoding="async"
+                       alt="Lazy Rainy Chillout, at 3 A.M.（画像）">
+                </picture>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">ワールドURL</span>
+                  <span class="media-overlay-url">https://vrchat.com/home/launch?worldId=wrld_cab5849f-5ebd-4414-918f-c7d75a195ef4</span>
+                </span>
+              </a>
+              <a class="media-link" href="https://x.com/4rotsuvrc/status/2062817052273033303?s=20"
+                 target="_blank" rel="noopener noreferrer" aria-label="Lazy Rainy Chillout, at 3 A.M.（動画）｜X 公開ポスト">
+                <video class="work__media"
+                       width="480" height="270"
+                       autoplay muted loop playsinline preload="metadata"
+                       disablepictureinpicture disableremoteplayback
+                       controlslist="nodownload noplaybackrate noremoteplayback"
+                       aria-label="Lazy Rainy Chillout, at 3 A.M.（動画）">
+                  <source src="works/03-VRChatワールド制作/002-lazy/video.mp4"  type="video/mp4">
+                </video>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">X 公開ポスト</span>
+                  <span class="media-overlay-url">https://x.com/4rotsuvrc/status/2062817052273033303?s=20</span>
+                </span>
+              </a>
             </div>
-            <figcaption class="work__caption">Lazy Rainy Chillout, at 3 A.M.</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Lazy Rainy Chillout, at 3 A.M.</span></figcaption>
           </figure>
         </li>
 
@@ -304,93 +313,90 @@
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/04-コミュニティ運営/001-verypoor/poster.jpg"
-                     width="480" height="270"
-                     autoplay muted loop playsinline preload="metadata"
-                     disablepictureinpicture disableremoteplayback
-                     controlslist="nodownload noplaybackrate noremoteplayback"
-                     aria-label="3DCG作業会 ベリープア（動画）">
-                <source src="works/04-コミュニティ運営/001-verypoor/video.webm" type="video/webm">
-                <source src="works/04-コミュニティ運営/001-verypoor/video.mp4"  type="video/mp4">
-              </video>
-              <picture>
-                <source srcset="works/04-コミュニティ運営/001-verypoor/image.webp" type="image/webp">
-                <img class="work__media" src="works/04-コミュニティ運営/001-verypoor/image.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="3DCG作業会 ベリープア（画像）">
-              </picture>
+              <a class="media-link" href="https://vrc.group/MODEL.5176"
+                 target="_blank" rel="noopener noreferrer" aria-label="VRChat内コワーキンググループ 3DCG作業会ベリープア（画像）｜グループURL">
+                <picture>
+                  <img class="work__media" src="works/04-コミュニティ運営/001-verypoor/image.png"
+                       width="480" height="270" loading="lazy" decoding="async"
+                       alt="VRChat内コワーキンググループ 3DCG作業会ベリープア（画像）">
+                </picture>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">グループURL</span>
+                  <span class="media-overlay-url">https://vrc.group/MODEL.5176</span>
+                </span>
+              </a>
+              <a class="media-link" href="https://x.com/3dcgworkshopvp/status/2065350897199427680?s=20"
+                 target="_blank" rel="noopener noreferrer" aria-label="VRChat内コワーキンググループ 3DCG作業会ベリープア（動画）｜プロモーション動画">
+                <video class="work__media"
+                       width="480" height="270"
+                       autoplay muted loop playsinline preload="metadata"
+                       disablepictureinpicture disableremoteplayback
+                       controlslist="nodownload noplaybackrate noremoteplayback"
+                       aria-label="VRChat内コワーキンググループ 3DCG作業会ベリープア（動画）">
+                  <source src="works/04-コミュニティ運営/001-verypoor/video.mp4"  type="video/mp4">
+                </video>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">プロモーション動画</span>
+                  <span class="media-overlay-url">https://x.com/3dcgworkshopvp/status/2065350897199427680?s=20</span>
+                </span>
+              </a>
             </div>
-            <figcaption class="work__caption">3DCG作業会 ベリープア</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">VRChat内コワーキンググループ<br>3DCG作業会ベリープア</span></figcaption>
           </figure>
         </li>
 
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/04-コミュニティ運営/002-unitykowakunai/poster.jpg"
-                     width="480" height="270"
-                     autoplay muted loop playsinline preload="metadata"
-                     disablepictureinpicture disableremoteplayback
-                     controlslist="nodownload noplaybackrate noremoteplayback"
-                     aria-label="Unityこわくないよ講座（動画）">
-                <source src="works/04-コミュニティ運営/002-unitykowakunai/video.webm" type="video/webm">
-                <source src="works/04-コミュニティ運営/002-unitykowakunai/video.mp4"  type="video/mp4">
-              </video>
-              <picture>
-                <source srcset="works/04-コミュニティ運営/002-unitykowakunai/image.webp" type="image/webp">
-                <img class="work__media" src="works/04-コミュニティ運営/002-unitykowakunai/image.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="Unityこわくないよ講座（画像）">
-              </picture>
+              <a class="media-link" href="https://vrc.group/UNEWBE.9001"
+                 target="_blank" rel="noopener noreferrer" aria-label="VRChat内勉強会 Unityこわくないよ講座（画像）｜グループURL">
+                <picture>
+                  <img class="work__media" src="works/04-コミュニティ運営/002-unitykowakunai/image.png"
+                       width="480" height="270" loading="lazy" decoding="async"
+                       alt="VRChat内勉強会 Unityこわくないよ講座（画像）">
+                </picture>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">グループURL</span>
+                  <span class="media-overlay-url">https://vrc.group/UNEWBE.9001</span>
+                </span>
+              </a>
+              <a class="media-link" href="https://x.com/unity_kowakunai/status/2060343020944601258?s=20"
+                 target="_blank" rel="noopener noreferrer" aria-label="VRChat内勉強会 Unityこわくないよ講座（動画）｜プロモーション動画">
+                <video class="work__media"
+                       width="480" height="270"
+                       autoplay muted loop playsinline preload="metadata"
+                       disablepictureinpicture disableremoteplayback
+                       controlslist="nodownload noplaybackrate noremoteplayback"
+                       aria-label="VRChat内勉強会 Unityこわくないよ講座（動画）">
+                  <source src="works/04-コミュニティ運営/002-unitykowakunai/video.mp4"  type="video/mp4">
+                </video>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">プロモーション動画</span>
+                  <span class="media-overlay-url">https://x.com/unity_kowakunai/status/2060343020944601258?s=20</span>
+                </span>
+              </a>
             </div>
-            <figcaption class="work__caption">Unityこわくないよ講座</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">VRChat内勉強会<br>Unityこわくないよ講座</span></figcaption>
           </figure>
         </li>
 
         <li>
           <figure class="work">
             <div class="work__media-group">
-              <video class="work__media" poster="works/04-コミュニティ運営/003-alhythm/poster.jpg"
-                     width="480" height="270"
-                     autoplay muted loop playsinline preload="metadata"
-                     disablepictureinpicture disableremoteplayback
-                     controlslist="nodownload noplaybackrate noremoteplayback"
-                     aria-label="Online Game-Tech LT（動画）">
-                <source src="works/04-コミュニティ運営/003-alhythm/video.webm" type="video/webm">
-                <source src="works/04-コミュニティ運営/003-alhythm/video.mp4"  type="video/mp4">
-              </video>
-              <picture>
-                <source srcset="works/04-コミュニティ運営/003-alhythm/image.webp" type="image/webp">
-                <img class="work__media" src="works/04-コミュニティ運営/003-alhythm/image.jpg"
-                     width="480" height="270" loading="lazy" decoding="async"
-                     alt="Online Game-Tech LT（画像）">
-              </picture>
+              <a class="media-link" href="https://youtube.com/live/5ho3kFTw5Pw"
+                 target="_blank" rel="noopener noreferrer" aria-label="Online Game-Tech LT 主催（画像）｜Youtube配信アーカイブ">
+                <picture>
+                  <img class="work__media" src="works/04-コミュニティ運営/003-lt/image.png"
+                       width="480" height="270" loading="lazy" decoding="async"
+                       alt="Online Game-Tech LT 主催（画像）">
+                </picture>
+                <span class="media-overlay" aria-hidden="true">
+                  <span class="media-overlay-title">Youtube配信アーカイブ</span>
+                  <span class="media-overlay-url">https://youtube.com/live/5ho3kFTw5Pw</span>
+                </span>
+              </a>
             </div>
-            <figcaption class="work__caption">Online Game-Tech LT</figcaption>
-          </figure>
-        </li>
-
-      </ul>
-    </section>
-
-    <section class="category">
-      <h2 class="category__label">動画・モーショングラフィックス</h2>
-      <ul class="gallery" role="list">
-
-        <li>
-          <figure class="work">
-            <div class="work__media-group">
-              <video class="work__media"
-                     width="480" height="270"
-                     autoplay muted loop playsinline preload="metadata"
-                     disablepictureinpicture disableremoteplayback
-                     controlslist="nodownload noplaybackrate noremoteplayback"
-                     aria-label="hoge（動画）">
-                <source src="works/05-動画制作/001-verypoor/video.webm" type="video/webm">
-                <source src="works/05-動画制作/001-verypoor/video.mp4"  type="video/mp4">
-              </video>
-            </div>
-            <figcaption class="work__caption">hoge</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Online Game-Tech LT 主催</span></figcaption>
           </figure>
         </li>
 
@@ -407,7 +413,7 @@
               <a class="media-link" href="https://docs.google.com/presentation/d/1SQsS8dz3PqnNFaL2pwclD7ZX0G3W49k9bWPm4U4s9Gg/edit?usp=sharing"
                  target="_blank" rel="noopener noreferrer" aria-label="SIGGRAPH Asia 2020 勉強会 発表（画像）｜Session16 Light transport: Methods">
                 <picture>
-                  <img class="work__media" src="works/06-LT/001-sig/image.jpg"
+                  <img class="work__media" src="works/05-LT/001-sig/image.jpg"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="SIGGRAPH Asia 2020 勉強会 発表（画像）">
                 </picture>
@@ -417,7 +423,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">SIGGRAPH Asia 2020 勉強会 発表</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">SIGGRAPH Asia 2020 勉強会 発表</span></figcaption>
           </figure>
         </li>
 
@@ -427,7 +433,7 @@
               <a class="media-link" href="https://docs.google.com/presentation/d/1NlzxoPPIETGPV_peQRqcGFLqs0oi6cxuHysraWtG25g/edit?usp=sharing"
                  target="_blank" rel="noopener noreferrer" aria-label="色彩工学の入り口に立つ（画像）｜Online Game-Tech LT 2020 発表">
                 <picture>
-                  <img class="work__media" src="works/06-LT/002-color/image.jpg"
+                  <img class="work__media" src="works/05-LT/002-color/image.jpg"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="色彩工学の入り口に立つ（画像）">
                 </picture>
@@ -437,7 +443,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">色彩工学の入り口に立つ</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">色彩工学の入り口に立つ</span></figcaption>
           </figure>
         </li>
 
@@ -447,7 +453,7 @@
               <a class="media-link" href="https://docs.google.com/presentation/d/14E67ioACZS-Fg22LwcbsbjrooobkoTU3lzE1A360Djw/edit?usp=sharing"
                  target="_blank" rel="noopener noreferrer" aria-label="物理ベースレンダリングを知ってもらうLT（画像）｜物理ベースレンダリングを知ってもらうLT">
                 <picture>
-                  <img class="work__media" src="works/06-LT/003-pbr/image.jpg"
+                  <img class="work__media" src="works/05-LT/003-pbr/image.jpg"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="物理ベースレンダリングを知ってもらうLT（画像）">
                 </picture>
@@ -457,7 +463,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">物理ベースレンダリングを知ってもらうLT</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">物理ベースレンダリングを知ってもらうLT</span></figcaption>
           </figure>
         </li>
 
@@ -465,12 +471,12 @@
           <figure class="work">
             <div class="work__media-group">
               <picture>
-                <img class="work__media" src="works/06-LT/004-postpro/image.jpg"
+                <img class="work__media" src="works/05-LT/004-postpro/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Graphical Enrichment in Unity（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">Graphical Enrichment in Unity</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Graphical Enrichment in Unity</span></figcaption>
           </figure>
         </li>
 
@@ -478,12 +484,12 @@
           <figure class="work">
             <div class="work__media-group">
               <picture>
-                <img class="work__media" src="works/06-LT/005-lighting/image.jpg"
+                <img class="work__media" src="works/05-LT/005-lighting/image.jpg"
                      width="480" height="270" loading="lazy" decoding="async"
                      alt="Lighting in Unity（画像）">
               </picture>
             </div>
-            <figcaption class="work__caption">Lighting in Unity</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Lighting in Unity</span></figcaption>
           </figure>
         </li>
 
@@ -493,7 +499,7 @@
               <a class="media-link" href="https://docs.google.com/presentation/d/1G8VJUPgEJGgZABkOu7prdd5QjEycZy2XyJ07hfD8wnU/edit?usp=sharing"
                  target="_blank" rel="noopener noreferrer" aria-label="流体シミュレーション 格子法の基礎（画像）｜技術サークルLT会での発表">
                 <picture>
-                  <img class="work__media" src="works/06-LT/006-fluid/image.jpg"
+                  <img class="work__media" src="works/05-LT/006-fluid/image.jpg"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="流体シミュレーション 格子法の基礎（画像）">
                 </picture>
@@ -503,7 +509,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">流体シミュレーション 格子法の基礎</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">流体シミュレーション 格子法の基礎</span></figcaption>
           </figure>
         </li>
 
@@ -513,7 +519,7 @@
               <a class="media-link" href="https://docs.google.com/presentation/d/1FpMjfXyzSJKzS6tCkQGxXAKkUUMfuHkUQDys53wyE1o/edit?usp=sharing"
                  target="_blank" rel="noopener noreferrer" aria-label="レイトレーシングのデータ構造（画像）｜技術サークルLT会での発表">
                 <picture>
-                  <img class="work__media" src="works/06-LT/007-rtdata/image.jpg"
+                  <img class="work__media" src="works/05-LT/007-rtdata/image.jpg"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="レイトレーシングのデータ構造（画像）">
                 </picture>
@@ -523,7 +529,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">レイトレーシングのデータ構造</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">レイトレーシングのデータ構造</span></figcaption>
           </figure>
         </li>
 
@@ -533,7 +539,7 @@
               <a class="media-link" href="https://docs.google.com/presentation/d/1Cu3kmyshPSpg5I2QA7RkC0VBPvvpLjwnS0dgGQTVzEI/edit?usp=sharing"
                  target="_blank" rel="noopener noreferrer" aria-label="レイトレーシング入門（画像）｜技術サークルLT会での発表">
                 <picture>
-                  <img class="work__media" src="works/06-LT/008-rayt/image.jpg"
+                  <img class="work__media" src="works/05-LT/008-rayt/image.jpg"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="レイトレーシング入門（画像）">
                 </picture>
@@ -543,7 +549,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">レイトレーシング入門</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">レイトレーシング入門</span></figcaption>
           </figure>
         </li>
 
@@ -558,11 +564,11 @@
           <figure class="work">
             <div class="work__media-group">
               <a class="media-link" href="https://shirotsu.hateblo.jp/entry/2020/09/26/020231"
-                 target="_blank" rel="noopener noreferrer" aria-label="CSゲーム業界で働きたい理系大学生へ捧げる本たち（画像）｜はてなブログ記事">
+                 target="_blank" rel="noopener noreferrer" aria-label="CSゲーム業界で働きたい 理系大学生へ捧げる本たち（画像）｜はてなブログ記事">
                 <picture>
-                  <img class="work__media" src="works/07-技術記事/001-books/image.png"
+                  <img class="work__media" src="works/06-技術記事/001-books/image.png"
                        width="480" height="270" loading="lazy" decoding="async"
-                       alt="CSゲーム業界で働きたい理系大学生へ捧げる本たち（画像）">
+                       alt="CSゲーム業界で働きたい 理系大学生へ捧げる本たち（画像）">
                 </picture>
                 <span class="media-overlay" aria-hidden="true">
                   <span class="media-overlay-title">はてなブログ記事</span>
@@ -570,7 +576,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">CSゲーム業界で働きたい理系大学生へ捧げる本たち</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">CSゲーム業界で働きたい<br>理系大学生へ捧げる本たち</span></figcaption>
           </figure>
         </li>
 
@@ -580,7 +586,7 @@
               <a class="media-link" href="https://shirotsu.hateblo.jp/entry/2020/01/14/000351"
                  target="_blank" rel="noopener noreferrer" aria-label="Embree3 入門解説 処理フロー概要（画像）｜はてなブログ記事">
                 <picture>
-                  <img class="work__media" src="works/07-技術記事/002-embree/image.png"
+                  <img class="work__media" src="works/06-技術記事/002-embree/image.png"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="Embree3 入門解説 処理フロー概要（画像）">
                 </picture>
@@ -590,7 +596,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">Embree3 入門解説 処理フロー概要</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">Embree3 入門解説 処理フロー概要</span></figcaption>
           </figure>
         </li>
 
@@ -600,7 +606,7 @@
               <a class="media-link" href="https://shirotsu.hateblo.jp/entry/2020/01/13/235657"
                  target="_blank" rel="noopener noreferrer" aria-label="C++ SSE/AVX 入門の記録（画像）｜はてなブログ記事">
                 <picture>
-                  <img class="work__media" src="works/07-技術記事/003-simd/image.png"
+                  <img class="work__media" src="works/06-技術記事/003-simd/image.png"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="C++ SSE/AVX 入門の記録（画像）">
                 </picture>
@@ -610,7 +616,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">C++ SSE/AVX 入門の記録</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">C++ SSE/AVX 入門の記録</span></figcaption>
           </figure>
         </li>
 
@@ -620,7 +626,7 @@
               <a class="media-link" href="https://shirotsu.hateblo.jp/entry/2019/12/28/012745"
                  target="_blank" rel="noopener noreferrer" aria-label="GitHub Actions 導入までの流れ（画像）｜はてなブログ記事">
                 <picture>
-                  <img class="work__media" src="works/07-技術記事/004-actions/image.png"
+                  <img class="work__media" src="works/06-技術記事/004-actions/image.png"
                        width="480" height="270" loading="lazy" decoding="async"
                        alt="GitHub Actions 導入までの流れ（画像）">
                 </picture>
@@ -630,7 +636,7 @@
                 </span>
               </a>
             </div>
-            <figcaption class="work__caption">GitHub Actions 導入までの流れ</figcaption>
+            <figcaption class="work__caption"><span class="work__caption-text">GitHub Actions 導入までの流れ</span></figcaption>
           </figure>
         </li>
 

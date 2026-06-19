@@ -1,3 +1,0 @@
-物理ベースレンダリングを知ってもらうLT
-
-image https://docs.google.com/presentation/d/14E67ioACZS-Fg22LwcbsbjrooobkoTU3lzE1A360Djw/edit?usp=sharing 物理ベースレンダリングを知ってもらうLT

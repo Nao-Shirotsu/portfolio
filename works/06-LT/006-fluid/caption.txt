@@ -1,3 +1,0 @@
-流体シミュレーション 格子法の基礎
-
-image https://docs.google.com/presentation/d/1G8VJUPgEJGgZABkOu7prdd5QjEycZy2XyJ07hfD8wnU/edit?usp=sharing 技術サークルLT会での発表
