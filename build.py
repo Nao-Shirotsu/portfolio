@@ -53,26 +53,42 @@ def first_line(path: Path) -> str:
 # メディア（動画/画像）のリンク見出し既定値
 DEFAULT_LINK_TITLE = "作品リリースページ"
 
+# base 画像として認識する拡張子（先頭優先）。webp は別途 <source> として上乗せされる任意の最適化形式。
+# 他フォーマットは必要になったら足す。
+IMAGE_EXTS = (".jpg", ".png")
+
+
+def image_file(work: Path, stem: str):
+    """stem に対応する base 画像（.jpg / .png）を返す。無ければ None。"""
+    for ext in IMAGE_EXTS:
+        p = work / f"{stem}{ext}"
+        if p.is_file():
+            return p
+    return None
+
 
 def caption_meta(work: Path):
-    """caption.txt を読み (caption_lines, links) を返す。
+    """caption.txt を読み (caption_lines, links, portrait) を返す。
 
-    空行を境にキャプションとリンク情報を分ける:
+    空行を境にキャプションとメタ情報を分ける:
       空行より前 = キャプション（複数行可。各行が改行表示される）
-      空行より後 = メディアごとのリンク。1行 = 「<メディア名> <URL> [見出し]」
-          <メディア名> はファイル名の stem（video / image / image-1 / image-2 …）
-          <URL>       そのメディアのリンク先
-          [見出し]     任意。省略時は「作品リリースページ」
-    空行が無ければ全体がキャプション（リンクなし）。
+      空行より後 = メタ行（リンク / 縦メディア指定）
+          リンク:   「<メディア名> <URL> [見出し]」
+              <メディア名> はファイル名の stem（video / image / image-1 / image-2 …）
+              <URL>       そのメディアのリンク先
+              [見出し]     任意。省略時は「作品リリースページ」
+          縦メディア: 「vertical <メディア名> [<メディア名> …]」
+              並べた縦画像/縦動画を縦長スロット（横画像2枚分の高さ）で表示する
+    空行が無ければ全体がキャプション（メタ無し）。
 
-    links は {メディア名: (url, 見出し)} の dict。
+    links は {メディア名: (url, 見出し)} の dict、portrait は縦メディア名の set。
     """
     path = work / "caption.txt"
     if not path.is_file():
-        return [], {}
+        return [], {}, set()
     raw = [ln.strip() for ln in path.read_text(encoding="utf-8").splitlines()]
 
-    # 最初の空行で前（キャプション）と後（リンク情報）に分割
+    # 最初の空行で前（キャプション）と後（メタ）に分割
     if "" in raw:
         sep = raw.index("")
         caption_lines = raw[:sep]                  # 空行手前まで（空行なし）
@@ -82,16 +98,22 @@ def caption_meta(work: Path):
         meta = []
 
     links = {}
+    portrait = set()
     for line in meta:
         tokens = line.split()
+        # 縦メディア指定: 「vertical key key …」
+        if tokens and tokens[0] == "vertical":
+            portrait.update(tokens[1:])
+            continue
+        # リンク行: 「key url [見出し]」
         if len(tokens) < 2:
-            print(f"  ! caption.txt のリンク行を無視（形式は「メディア名 URL [見出し]」）: {line!r}",
+            print(f"  ! caption.txt のメタ行を無視（「メディア名 URL [見出し]」か「vertical メディア名…」）: {line!r}",
                   file=sys.stderr)
             continue
         key, url = tokens[0], tokens[1]
         title = " ".join(tokens[2:]) if len(tokens) >= 3 else DEFAULT_LINK_TITLE
         links[key] = (url, title)
-    return caption_lines, links
+    return caption_lines, links, portrait
 
 
 def numbered_dirs(parent: Path):
@@ -110,7 +132,12 @@ def text(value: str) -> str:
     return html.escape(value, quote=False)
 
 
-def video_block(work: Path, rel: str, caption: str) -> str:
+def media_class(portrait: bool) -> str:
+    """メディア要素の class。縦メディアは縦長スロット用の修飾子を足す。"""
+    return "work__media work__media--portrait" if portrait else "work__media"
+
+
+def video_block(work: Path, rel: str, caption: str, portrait: bool = False) -> str:
     """動画ブロック。poster は在れば付与。"""
     poster = f' poster="{attr(rel)}/poster.jpg"' if (work / "poster.jpg").is_file() else ""
     sources = []
@@ -118,7 +145,7 @@ def video_block(work: Path, rel: str, caption: str) -> str:
         sources.append(f'                <source src="{attr(rel)}/video.webm" type="video/webm">')
     sources.append(f'                <source src="{attr(rel)}/video.mp4"  type="video/mp4">')
     return (
-        f'              <video class="work__media"{poster}\n'
+        f'              <video class="{media_class(portrait)}"{poster}\n'
         f'                     width="480" height="270"\n'
         f'                     autoplay muted loop playsinline preload="metadata"\n'
         f'                     disablepictureinpicture disableremoteplayback\n'
@@ -129,8 +156,11 @@ def video_block(work: Path, rel: str, caption: str) -> str:
     )
 
 
-def image_block(work: Path, rel: str, caption: str, stem: str, label_suffix: str) -> str:
-    """画像ブロック。webp は在れば <source> として付与。"""
+def image_block(work: Path, rel: str, caption: str, stem: str, label_suffix: str,
+                portrait: bool = False) -> str:
+    """画像ブロック。base は .jpg / .png（image_file が解決）。webp は在れば <source> として付与。"""
+    img = image_file(work, stem)
+    src = f"{rel}/{img.name}"  # 実在する拡張子（.jpg か .png）をそのまま使う
     webp = (
         f'                <source srcset="{attr(rel)}/{stem}.webp" type="image/webp">\n'
         if (work / f"{stem}.webp").is_file()
@@ -139,7 +169,7 @@ def image_block(work: Path, rel: str, caption: str, stem: str, label_suffix: str
     return (
         f"              <picture>\n"
         f"{webp}"
-        f'                <img class="work__media" src="{attr(rel)}/{stem}.jpg"\n'
+        f'                <img class="{media_class(portrait)}" src="{attr(src)}"\n'
         f'                     width="480" height="270" loading="lazy" decoding="async"\n'
         f'                     alt="{attr(caption)}（{label_suffix}）">\n'
         f"              </picture>"
@@ -165,49 +195,54 @@ def link_wrap(block: str, link, caption: str, label_suffix: str) -> str:
     )
 
 
-def media_blocks(work: Path, rel: str, caption: str, links: dict) -> list:
+def media_blocks(work: Path, rel: str, caption: str, links: dict, portrait: set) -> list:
     """作品フォルダ内の在るファイルからメディアブロックを順に組み立てる（動画→画像）。
 
     links に該当キーがあるメディアだけ <a>+オーバーレイで包む（無いものは素のまま）。
+    portrait に該当キーがあるメディアは縦長スロットで表示する。
     """
     blocks = []
     used = set()
 
     def add(block: str, key: str, label_suffix: str):
+        used.add(key)
         if key in links:
-            used.add(key)
             blocks.append(link_wrap(block, links[key], caption, label_suffix))
         else:
             blocks.append(block)
 
     if (work / "video.mp4").is_file():
-        add(video_block(work, rel, caption), "video", "動画")
+        add(video_block(work, rel, caption, "video" in portrait), "video", "動画")
 
-    # 画像: image.jpg（1枚）か image-1.jpg, image-2.jpg…（複数）
-    if (work / "image.jpg").is_file():
-        add(image_block(work, rel, caption, "image", "画像"), "image", "画像")
+    # 画像: image（1枚）か image-1, image-2…（複数）。拡張子は .jpg / .png のどちらでも可。
+    if image_file(work, "image"):
+        add(image_block(work, rel, caption, "image", "画像", "image" in portrait), "image", "画像")
     else:
-        numbered = sorted(
-            (p for p in work.glob("image-*.jpg")),
-            key=lambda p: int(re.search(r"image-(\d+)", p.stem).group(1)),
-        )
-        for p in numbered:
-            n = re.search(r"image-(\d+)", p.stem).group(1)
-            add(image_block(work, rel, caption, p.stem, f"画像{n}"), p.stem, f"画像{n}")
+        # 連番 stem を集める。同じ番号で .jpg と .png が両方在れば先勝ち（image_file と同じ優先順）。
+        numbered = {}
+        for ext in IMAGE_EXTS:
+            for p in work.glob(f"image-*{ext}"):
+                m = re.fullmatch(r"image-(\d+)", p.stem)
+                if m:
+                    numbered.setdefault(int(m.group(1)), p.stem)
+        for n in sorted(numbered):
+            stem = numbered[n]
+            add(image_block(work, rel, caption, stem, f"画像{n}", stem in portrait),
+                stem, f"画像{n}")
 
-    for key in links:
+    for key in set(links) | set(portrait):
         if key not in used:
-            print(f"  ! caption.txt のリンクキー '{key}' に対応するメディアが無い: {rel}",
+            print(f"  ! caption.txt のキー '{key}' に対応するメディアが無い: {rel}",
                   file=sys.stderr)
     return blocks
 
 
 def work_html(work: Path, category_dir: str) -> str:
-    caption_lines, links = caption_meta(work)
+    caption_lines, links, portrait = caption_meta(work)
     caption_attr = " ".join(caption_lines)  # alt/aria-label 用の1行表現
     caption_html = "<br>".join(text(ln) for ln in caption_lines)  # 改行表示
     rel = f"works/{category_dir}/{work.name}"
-    blocks = media_blocks(work, rel, caption_attr, links)
+    blocks = media_blocks(work, rel, caption_attr, links, portrait)
     if not blocks:
         print(f"  ! メディアが無い作品をスキップ: {rel}", file=sys.stderr)
         return ""

@@ -1,0 +1,3 @@
+レイトレーシング入門
+
+image https://docs.google.com/presentation/d/1Cu3kmyshPSpg5I2QA7RkC0VBPvvpLjwnS0dgGQTVzEI/edit?usp=sharing 技術サークルLT会での発表

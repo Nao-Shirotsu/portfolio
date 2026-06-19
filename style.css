@@ -13,6 +13,7 @@
   --subtext:   #6B7078; /* 補助テキスト（キャプション・自己紹介） */
   --accent:    #3A3FB0; /* 差し色：リンク/フォーカスのみ */
   --hairline:  #E4E6EA; /* ごく薄い境界 */
+  --fill:      #ECEEF1; /* 縦メディアの余白フィル：背景より少しだけ輝度が低い白 */
 
   /* --- タイポ：システムフォントのみ（外部フォントなし） --- */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
@@ -166,7 +167,15 @@ body {
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  background: #ECEEF1; /* 読み込み前のプレースホルダ色 */
+  background: var(--fill); /* 読み込み前のプレースホルダ色 */
+}
+
+/* 縦メディア（縦画像・縦動画）。横画像2枚分の高さ（16:9 ×2 ＝ 8:9）の縦長スロット。
+   全体を収めて（contain）、余白は背景より少し暗い白でフィルする。 */
+.work__media--portrait {
+  aspect-ratio: 8 / 9;
+  object-fit: contain;
+  background: var(--fill);
 }
 
 /* 同じ塊内でメディアが続くとき、間に細い区切りを入れる */
@@ -181,6 +190,7 @@ body {
   color: var(--subtext);
   font-size: 0.875rem;
   line-height: 1.4;
+  text-align: center;
 }
 
 /* --- リンク（差し色はここだけ） --- */
