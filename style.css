@@ -94,13 +94,63 @@ body {
   align-items: start; /* 塊ごとに高さが違っても上端で揃える */
 }
 
-/* --- 1作品の塊 --- */
+/* --- 1作品の塊（コンテントカード = 動画/画像 + キャプション） --- */
 .work {
   margin: 0;
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: 6px;
   overflow: hidden;
+}
+
+/* URL が仕込まれたメディアだけリンク化。素のメディアは従来通り（グレーアウト無し） */
+.media-link {
+  display: block;
+  position: relative; /* オーバーレイの基準 */
+  color: inherit;
+  text-decoration: none;
+}
+
+.media-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ホバー/フォーカス時にそのメディアだけ少しグレーアウトし、見出し+URLを重ねる */
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(26, 28, 32, 0.55); /* --text を半透明にした薄いグレーアウト */
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none; /* クリックは下のリンクへ通す */
+}
+
+.media-link:hover .media-overlay,
+.media-link:focus-visible .media-overlay {
+  opacity: 1;
+}
+
+.media-overlay-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.media-overlay-url {
+  max-width: 100%;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+  word-break: break-all;
 }
 
 /* 塊の中の複数メディア（動画/画像）を縦に積む */

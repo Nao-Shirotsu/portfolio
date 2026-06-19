@@ -22,6 +22,7 @@ works/ が唯一の正（source of truth）。このスクリプトは index.htm
 import html
 import re
 import sys
+import textwrap
 from pathlib import Path
 
 # Windows コンソール（cp932）でも日本語ログが化けないよう UTF-8 に統一
@@ -47,6 +48,50 @@ def first_line(path: Path) -> str:
     for line in path.read_text(encoding="utf-8").splitlines():
         return line.strip()
     return ""
+
+
+# メディア（動画/画像）のリンク見出し既定値
+DEFAULT_LINK_TITLE = "作品リリースページ"
+
+
+def caption_meta(work: Path):
+    """caption.txt を読み (caption_lines, links) を返す。
+
+    空行を境にキャプションとリンク情報を分ける:
+      空行より前 = キャプション（複数行可。各行が改行表示される）
+      空行より後 = メディアごとのリンク。1行 = 「<メディア名> <URL> [見出し]」
+          <メディア名> はファイル名の stem（video / image / image-1 / image-2 …）
+          <URL>       そのメディアのリンク先
+          [見出し]     任意。省略時は「作品リリースページ」
+    空行が無ければ全体がキャプション（リンクなし）。
+
+    links は {メディア名: (url, 見出し)} の dict。
+    """
+    path = work / "caption.txt"
+    if not path.is_file():
+        return [], {}
+    raw = [ln.strip() for ln in path.read_text(encoding="utf-8").splitlines()]
+
+    # 最初の空行で前（キャプション）と後（リンク情報）に分割
+    if "" in raw:
+        sep = raw.index("")
+        caption_lines = raw[:sep]                  # 空行手前まで（空行なし）
+        meta = [ln for ln in raw[sep + 1:] if ln]  # 空行以降の非空行
+    else:
+        caption_lines = [ln for ln in raw if ln]
+        meta = []
+
+    links = {}
+    for line in meta:
+        tokens = line.split()
+        if len(tokens) < 2:
+            print(f"  ! caption.txt のリンク行を無視（形式は「メディア名 URL [見出し]」）: {line!r}",
+                  file=sys.stderr)
+            continue
+        key, url = tokens[0], tokens[1]
+        title = " ".join(tokens[2:]) if len(tokens) >= 3 else DEFAULT_LINK_TITLE
+        links[key] = (url, title)
+    return caption_lines, links
 
 
 def numbered_dirs(parent: Path):
@@ -76,6 +121,8 @@ def video_block(work: Path, rel: str, caption: str) -> str:
         f'              <video class="work__media"{poster}\n'
         f'                     width="480" height="270"\n'
         f'                     autoplay muted loop playsinline preload="metadata"\n'
+        f'                     disablepictureinpicture disableremoteplayback\n'
+        f'                     controlslist="nodownload noplaybackrate noremoteplayback"\n'
         f'                     aria-label="{attr(caption)}（動画）">\n'
         + "\n".join(sources)
         + "\n              </video>"
@@ -99,15 +146,46 @@ def image_block(work: Path, rel: str, caption: str, stem: str, label_suffix: str
     )
 
 
-def media_blocks(work: Path, rel: str, caption: str) -> list:
-    """作品フォルダ内の在るファイルからメディアブロックを順に組み立てる（動画→画像）。"""
+def link_wrap(block: str, link, caption: str, label_suffix: str) -> str:
+    """メディアブロックを <a> で包み、ホバー用オーバーレイ（グレーアウト + 見出し + URL）を足す。"""
+    url, title = link
+    aria = attr(f"{caption}（{label_suffix}）｜{title}")
+    overlay = (
+        '                <span class="media-overlay" aria-hidden="true">\n'
+        f'                  <span class="media-overlay-title">{text(title)}</span>\n'
+        f'                  <span class="media-overlay-url">{text(url)}</span>\n'
+        "                </span>"
+    )
+    return (
+        f'              <a class="media-link" href="{attr(url)}"\n'
+        f'                 target="_blank" rel="noopener noreferrer" aria-label="{aria}">\n'
+        f"{textwrap.indent(block, '  ')}\n"
+        f"{overlay}\n"
+        "              </a>"
+    )
+
+
+def media_blocks(work: Path, rel: str, caption: str, links: dict) -> list:
+    """作品フォルダ内の在るファイルからメディアブロックを順に組み立てる（動画→画像）。
+
+    links に該当キーがあるメディアだけ <a>+オーバーレイで包む（無いものは素のまま）。
+    """
     blocks = []
+    used = set()
+
+    def add(block: str, key: str, label_suffix: str):
+        if key in links:
+            used.add(key)
+            blocks.append(link_wrap(block, links[key], caption, label_suffix))
+        else:
+            blocks.append(block)
+
     if (work / "video.mp4").is_file():
-        blocks.append(video_block(work, rel, caption))
+        add(video_block(work, rel, caption), "video", "動画")
 
     # 画像: image.jpg（1枚）か image-1.jpg, image-2.jpg…（複数）
     if (work / "image.jpg").is_file():
-        blocks.append(image_block(work, rel, caption, "image", "画像"))
+        add(image_block(work, rel, caption, "image", "画像"), "image", "画像")
     else:
         numbered = sorted(
             (p for p in work.glob("image-*.jpg")),
@@ -115,25 +193,33 @@ def media_blocks(work: Path, rel: str, caption: str) -> list:
         )
         for p in numbered:
             n = re.search(r"image-(\d+)", p.stem).group(1)
-            blocks.append(image_block(work, rel, caption, p.stem, f"画像{n}"))
+            add(image_block(work, rel, caption, p.stem, f"画像{n}"), p.stem, f"画像{n}")
+
+    for key in links:
+        if key not in used:
+            print(f"  ! caption.txt のリンクキー '{key}' に対応するメディアが無い: {rel}",
+                  file=sys.stderr)
     return blocks
 
 
 def work_html(work: Path, category_dir: str) -> str:
-    caption = first_line(work / "caption.txt")
+    caption_lines, links = caption_meta(work)
+    caption_attr = " ".join(caption_lines)  # alt/aria-label 用の1行表現
+    caption_html = "<br>".join(text(ln) for ln in caption_lines)  # 改行表示
     rel = f"works/{category_dir}/{work.name}"
-    blocks = media_blocks(work, rel, caption)
+    blocks = media_blocks(work, rel, caption_attr, links)
     if not blocks:
         print(f"  ! メディアが無い作品をスキップ: {rel}", file=sys.stderr)
         return ""
     inner = "\n".join(blocks)
+
     return (
         "        <li>\n"
         '          <figure class="work">\n'
         '            <div class="work__media-group">\n'
         f"{inner}\n"
         "            </div>\n"
-        f'            <figcaption class="work__caption">{text(caption)}</figcaption>\n'
+        f'            <figcaption class="work__caption">{caption_html}</figcaption>\n'
         "          </figure>\n"
         "        </li>"
     )
