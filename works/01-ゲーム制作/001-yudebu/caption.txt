@@ -1,3 +1,5 @@
 幽鬼電脳ブレイクロア
 
-video https://gamebiz.jp/news/423084 ゲーム紹介 (メディア様掲載記事)
+order image1 image2 image3
+image1 https://unityroom.com/games/yudebreak ゲーム本体 (unityroom)
+image2 https://gamebiz.jp/news/423084 ゲーム内容紹介 (メディア様掲載記事)

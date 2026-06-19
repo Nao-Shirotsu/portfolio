@@ -1,1 +1,5 @@
-Alhythm
+音楽ゲーム Alhythm
+
+order image1 image2
+image1 https://github.com/Nao-Shirotsu/Siv3D_Alhythm GitHubリポジトリ
+image2 https://youtu.be/IdYA4AkEBio?si=MMOSBnkzI_qOXKwn ゲームプレイ動画
