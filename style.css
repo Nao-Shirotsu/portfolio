@@ -70,6 +70,15 @@ body {
   font-size: 0.95rem;
 }
 
+/* 経歴：数行のプロフィール文 */
+.site-bio {
+  margin: 1rem 0 0;
+  max-width: 60ch;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
 /* --- カテゴリ（見出し + その配下のグリッド） --- */
 .category {
   max-width: var(--maxw);
