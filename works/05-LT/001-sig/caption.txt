@@ -1,3 +1,3 @@
-SIGGRAPH Asia 2020 勉強会 発表
+最新PBR論文の内容まとめ
 
-image https://docs.google.com/presentation/d/1SQsS8dz3PqnNFaL2pwclD7ZX0G3W49k9bWPm4U4s9Gg/edit?usp=sharing Session16 Light transport: Methods
+image https://docs.google.com/presentation/d/1SQsS8dz3PqnNFaL2pwclD7ZX0G3W49k9bWPm4U4s9Gg/edit?usp=sharing SIGGRAPH Asia 2020 勉強会での発表

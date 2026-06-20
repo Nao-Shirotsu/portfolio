@@ -1,3 +1,4 @@
-VRChat向け PCVR内で画像閲覧するツール
+VRChat向け PCVRで写真を見るツール
+(OpenVR オーバーレイUI)
 
 image https://4rotsugd.booth.pm/items/8183859 BOOTH販売ページ
