@@ -79,6 +79,72 @@ body {
   line-height: 1.8;
 }
 
+/* --- 依頼案内（経歴と作品一覧の間の文章ブロック） --- */
+.commission {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.commission__lead {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.commission__subhead {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.commission__note {
+  margin: 0 0 1rem;
+  color: var(--subtext);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.commission__list {
+  margin: 0 0 1rem;
+  padding-left: 1.4em;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.commission__list li + li {
+  margin-top: 0.3rem;
+}
+
+.commission__contact {
+  margin: 0 0 0.5rem;
+  color: var(--subtext);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.commission__price-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  max-width: 28rem;
+}
+
+.commission__price-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.95rem;
+}
+
+.commission__price-value {
+  color: var(--subtext);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* --- カテゴリ（見出し + その配下のグリッド） --- */
 .category {
   max-width: var(--maxw);
