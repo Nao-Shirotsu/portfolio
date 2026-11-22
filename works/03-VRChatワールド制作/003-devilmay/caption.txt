@@ -1,0 +1,6 @@
+マーダーミステリー DevilMay VRChat版
+
+order image-1 image-2 image-3
+image-1 https://vrchat.com/home/launch?worldId=wrld_bb17a2a9-593b-497b-9086-137fdae70c65 ワールドURL
+image-2 https://x.com/4rotsuvrc/status/2121864778633101614?a=sMuEgtixlRHUCLc2pCI&s=20 遊び方紹介
+image-3 https://x.com/search?q=%23%E3%81%A7%E3%81%B3%E3%82%81%E3%81%84VR&src=typed_query ハッシュタグ #でびめいVR
